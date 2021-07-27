@@ -14,8 +14,6 @@ public class TestaCurso {
 		javaColecoes.adiciona(new Aula("Java Collections", 15));
 		javaColecoes.adiciona(new Aula("Java Streams e Lambdas", 49));
 		
-		System.out.println(javaColecoes.getAulas());
-		
 		aulas.forEach(System.out::println);
 		
 		
