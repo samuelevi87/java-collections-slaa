@@ -46,7 +46,7 @@ public class Curso {
 	
 	@Override
 	public String toString() {
-		return "Curso: " + nome + ", tempo total: " + this.getTempoTotal();
+		return "Curso: " + nome + ", tempo total: " + this.getTempoTotal() + " minutos.\n" + "Aulas:\n  " + this.aulas;
 	}
 
 }
