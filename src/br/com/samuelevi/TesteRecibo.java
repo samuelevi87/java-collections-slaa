@@ -27,6 +27,8 @@ public class TesteRecibo {
 		double sum = listaRecibos.stream().mapToDouble(Recibo::getValor).sum();
 		System.out.println("Valor total: R$ " + sum);
 		
+		
+		
 	}
 
 }

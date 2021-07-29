@@ -2,8 +2,11 @@ package br.com.samuelevi;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,8 +18,8 @@ public class Curso {
 
 	private Set<Aluno> alunos = new HashSet<Aluno>();
 	private Set<Aluno> alunosSincronizados = Collections.synchronizedSet(alunos);
-
-
+	private Map<Integer, Aluno> matriculaParaAluno = new LinkedHashMap<Integer, Aluno>();
+	
 	public Curso(String nome, String instrutor) {
 		this.nome = nome;
 		this.instrutor = instrutor;
@@ -41,7 +44,7 @@ public class Curso {
 	public List<Aula> getAulas() {
 		return Collections.unmodifiableList(aulas);
 	}
-	
+
 	public Set<Aluno> getAlunos() {
 		return Collections.unmodifiableSet(alunos);
 	}
@@ -49,6 +52,7 @@ public class Curso {
 	public Set<Aluno> getAlunosSincronizados() {
 		return Collections.unmodifiableSet(alunosSincronizados);
 	}
+
 	public void adiciona(Aula aula) {
 		this.aulas.add(aula);
 	}
@@ -63,7 +67,8 @@ public class Curso {
 	}
 
 	public void matricular(Aluno aluno) {
-		this.alunos.add(aluno);		
+		this.alunos.add(aluno);
+		this.matriculaParaAluno.put(aluno.getNumeroMatricula(), aluno);
 	}
 
 	public boolean isMatriculado(Aluno aluno) {
@@ -84,9 +89,10 @@ public class Curso {
 		Curso other = (Curso) obj;
 		return Objects.equals(instrutor, other.instrutor) && Objects.equals(nome, other.nome);
 	}
-	
-	
-	
-	
 
+	public Aluno buscarAluno(int mat) {
+		if(!matriculaParaAluno.containsKey(mat))
+			throw new NoSuchElementException("Inexistente!");
+		return matriculaParaAluno.get(mat);
+	}
 }
