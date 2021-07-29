@@ -1,7 +1,5 @@
 package br.com.samuelevi;
 
-import java.util.Collections;
-
 public class TestaCursoComAluno {
 
 	public static void main(String[] args) {

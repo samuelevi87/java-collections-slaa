@@ -2,8 +2,8 @@ package br.com.samuelevi;
 
 import java.util.Objects;
 
-public class Aluno {
-	String nome;
+public class Aluno implements Comparable<Aluno> {
+	private String nome;
 	private int numeroMatricula;
 
 	public Aluno(String nome, int numeroMatricula) {
@@ -37,6 +37,11 @@ public class Aluno {
 			return false;
 		Aluno other = (Aluno) obj;
 		return Objects.equals(nome, other.nome) && numeroMatricula == other.numeroMatricula;
+	}
+
+	@Override
+	public int compareTo(Aluno aluno) {
+		return this.getNome().compareTo(aluno.nome);
 	}
 	
 	

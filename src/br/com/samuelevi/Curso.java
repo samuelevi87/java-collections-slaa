@@ -1,11 +1,11 @@
 package br.com.samuelevi;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Curso {
 
@@ -13,14 +13,11 @@ public class Curso {
 	private String instrutor;
 	private List<Aula> aulas = new LinkedList<>();
 
-	private Set<Aluno> alunos = new HashSet<Aluno>();
+	private Set<Aluno> alunos = new TreeSet<Aluno>();
 	private Set<Aluno> alunosSincronizados = Collections.synchronizedSet(alunos);
 
 
 	public Curso(String nome, String instrutor) {
-		if(nome == null) {
-		throw new NullPointerException("Nome não pode ser nulo");
-		}
 		this.nome = nome;
 		this.instrutor = instrutor;
 	}
