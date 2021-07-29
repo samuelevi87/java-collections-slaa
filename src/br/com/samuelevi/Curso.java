@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Curso {
@@ -17,6 +18,9 @@ public class Curso {
 
 
 	public Curso(String nome, String instrutor) {
+		if(nome == null) {
+		throw new NullPointerException("Nome não pode ser nulo");
+		}
 		this.nome = nome;
 		this.instrutor = instrutor;
 	}
@@ -64,5 +68,28 @@ public class Curso {
 	public void matricular(Aluno aluno) {
 		this.alunos.add(aluno);		
 	}
+
+	public boolean isMatriculado(Aluno aluno) {
+		return this.alunos.contains(aluno);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(instrutor, nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Curso))
+			return false;
+		Curso other = (Curso) obj;
+		return Objects.equals(instrutor, other.instrutor) && Objects.equals(nome, other.nome);
+	}
+	
+	
+	
+	
 
 }
