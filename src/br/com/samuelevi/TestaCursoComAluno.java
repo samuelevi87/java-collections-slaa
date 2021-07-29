@@ -1,5 +1,12 @@
 package br.com.samuelevi;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 public class TestaCursoComAluno {
 
 	public static void main(String[] args) {
@@ -23,29 +30,24 @@ public class TestaCursoComAluno {
 		javaColecoes.matricular(a5);
 
 		System.out.println("Todos os alunos matriculados:");
-		javaColecoes.getAlunos().forEach(aluno -> {
-			System.out.println(aluno);
-		});
+		
+		Set<Aluno> alunos = javaColecoes.getAlunos();
+		
+		List<Aluno> list = new ArrayList<>(alunos);
+		
+		Collections.sort(list);
+		
+		Iterator<Aluno> iterador = list.iterator();
+		while(iterador.hasNext()) {
+			Aluno proximo = iterador.next();
+			System.out.println(">>" + proximo);
+		}
+
 		System.out.println();
-
-		System.out.println("Todos os alunos matriculados:");
-		javaColecoes.getAlunosSincronizados().forEach(System.out::println);
-
-		System.out.println();
-
-		System.out.println("O aluno " + a1.getNome() + " está matriculado?");
-		System.out.println(javaColecoes.isMatriculado(a1));
-
-		Aluno samuel = new Aluno("Samuel Levi", 3914);
-		System.out.println("E esse Samuel, está matriculado?");
-		System.out.println(javaColecoes.isMatriculado(samuel));
-
-		System.out.println("Comparação por equals");
-		System.out.println(a1.equals(samuel));
-		System.out.println();
-		System.out.println("Comparação de hashs");
-		System.out.println(a1.hashCode() == samuel.hashCode());
-
+		for (Aluno aluno : alunos) {
+			System.out.println("-->" + aluno);
+		}
+		
 	}
 
 }
